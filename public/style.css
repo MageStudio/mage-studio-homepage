@@ -51,13 +51,19 @@ header {
     align-items: center;
 }
 
-header .logo {
+header .logo-container {
     font-family: 'Leckerli One', italic;
     color: var(--accent);
     font-size: 2em;
     line-height: 40px;
     flex-grow: 16;
     text-shadow: 2px 2px var(--faint-red-border);
+}
+
+.logo:before {
+    content: '';
+    height: 2px;
+    background: var(--accent);
 }
 
 header nav {
@@ -74,7 +80,7 @@ header nav {
     flex-direction: row;
     flex-wrap: nowrap;
     align-content: stretch;
-    justify-content: flex-start;
+    justify-content: end;
     align-items: center;
 }
 
@@ -93,7 +99,6 @@ header nav {
 
 .navigation-links li a:focus,
 .navigation-links li a:hover {
-    border-bottom: 4px solid var(--faint-red-color);
     color:var(--accent);
     padding-bottom: 4px;
 }
