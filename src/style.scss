@@ -1,0 +1,60 @@
+:root {
+    --backgroundColor: #091a28;
+    --accent: #f1c40f;
+    --orange: #ffbe76;
+    --red: #ff7979;
+    --faint-orange-color: rgba(255,190,118, .2);
+    --codeBackgroudColor: rgba(44,58,71,.2);
+    --textColor: white;
+    --faint-red-color: rgba(255, 121, 121, .7);
+    --borderColor: rgba(255,190,118, .1);
+}
+
+@import './fonts.scss';
+@import 'style/M.css';
+// @import 'style/ui.css';
+
+@import './ui/header/index.scss';
+@import './ui/footer/index.scss';
+@import './ui/hero/index.scss';
+@import './ui/blobs/index.scss';
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--backgroundColor);
+    flex-direction: column;
+    align-content: stretch;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+header,
+footer {
+    display: flex;
+    height: 42px;
+    padding: 16px;
+    flex-grow: 1;
+}
+
+header,
+main,
+footer {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+main {
+    display: flex;
+    min-height: 42px;
+    flex-grow: 4;
+}
+
+#democontainer {
+    position: absolute;
+    height: calc(100vh - 160px);
+    top: 80px;
+    width: 100vw;
+    z-index: 200;
+    opacity: .7;
+}

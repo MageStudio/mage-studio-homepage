@@ -1,0 +1,38 @@
+.hero {
+    display: flex;
+    /* height: 30vh; */
+    width: 32vw;
+    position: absolute;
+    margin: 24vh 5vw;
+    font-family: 'Heebo', sans-serif;
+    flex-direction: column;
+    z-index: 202;
+
+    & p {
+        color: white;
+        font-size: 3em;
+        font-weight: 900;
+
+        & span {
+            z-index: 2;
+        }
+    }
+
+    & .cta {
+        font-family: 'Work Sans';
+        font-weight: 700;
+        line-height: 56px;
+        /* display: inline-block; */
+        color: white;
+        text-align: center;
+        height: 56px;
+        max-width: 16VW;
+        /* margin: 32px; */
+        font-size: .8rem;
+        border-radius: 8px;
+        background: var(--faint-red-color);
+        text-decoration: none;
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+}

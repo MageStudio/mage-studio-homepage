@@ -1,0 +1,35 @@
+.first-blob {
+    content: ' ';
+    background-image: radial-gradient(red 21%, transparent 0%), radial-gradient(red 35%, transparent 20%);
+    background-color: transparent;
+    background-position: 0 0, 50px 50px;
+    background-size: 20px 20px;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    width: 560px;
+    height: 420px;
+    display: block;
+    opacity: .3;
+    position: absolute;
+    z-index: 0;
+    top: 112px;
+    left: -200px;
+    transform: rotate(28deg);
+}
+
+.second-blob {
+    content: ' ';
+    background-image: radial-gradient(#f9ca24 21%, transparent 0%), radial-gradient(#f9ca24 35%, transparent 20%);
+    background-color: transparent;
+    background-position: 0 0, 50px 50px;
+    background-size: 20px 20px;
+    border-radius: 49% 55% 50% 50% / 50% 60% 44% 40%;
+    width: 1024px;
+    height: 768px;
+    display: block;
+    opacity: .3;
+    position: absolute;
+    z-index: 0;
+    top: 112px;
+    left: 320px;
+    transform: rotate(-28deg);
+}

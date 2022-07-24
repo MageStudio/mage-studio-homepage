@@ -1,0 +1,26 @@
+footer {
+    flex-grow: 1;
+    flex-direction: row;
+    align-content: flex-end;
+    justify-content: flex-end;
+    align-items: center;
+
+    height: 42px;
+    padding: 16px;
+    flex-grow: 1;
+
+    border-top: 1px solid var(--borderColor);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+    width: calc(100vw - 32px);
+    z-index: 2;
+    position: absolute;
+    top: calc(100vh - 72px);
+
+    font-family: "Nunito Sans", sans-serif;
+    color: white;
+}
