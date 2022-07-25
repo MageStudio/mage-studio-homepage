@@ -1,22 +1,16 @@
 
-const getLoadingScreenMessage = message => (
-    <span className='loading-bar-message'>{ message }</span>
-);
+const getLoadingScreenClassname = (fading) => `loading-container ${fading ? 'fading' : ''}`; 
 
-const LoadingScreen = ({ message }) => (
-    <div className='loading-screen gradient-background'>
-        <div className='loading-bar-container'>
-            { message && getLoadingScreenMessage(message) }
-            <div class="progress-bar">
-                <div className='track'>
-                    <img
-                        src='/img/car.png'
-                        className='car'
-                        height='16px'/>
-                </div>
-            </div>
+const LoadingScreen = ({ fading = false }) => (
+    <div className={getLoadingScreenClassname(fading)}>
+        <div className="svg-wrapper">
+            <svg height="60" width="500" xmlns="http://www.w3.org/2000/svg">
+                <rect className="shape1" height="60" width="500" />
+                <rect className="shape2" height="60" width="500" />
+            </svg>
         </div>
     </div>
+    
 );
 
 export default LoadingScreen;
