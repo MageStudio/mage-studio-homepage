@@ -1,0 +1,80 @@
+@keyframes animate {
+    100% {
+        stroke-dashoffset: 1120;
+        stroke-dasharray: 1120;
+    }
+}
+
+@keyframes fadeout {
+    100% {
+        opacity: 0;
+    }
+}
+
+.loading-container {
+    position: absolute;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background: var(--backgroundColor);
+    z-index: 300;
+    opacity: 1;
+    transition: 1s opacity;
+
+    &.fading {
+        opacity: 0;
+    }
+}
+
+.svg-wrapper {
+    position: relative;
+    width: 500px;
+    vertical-align: middle;
+    margin: auto;
+    color: white;
+
+    &::after {
+        content: 'LOADING';
+        font-family: "Nunito Sans", sans-serif;
+        font-size: 10px;
+        font-weight: 900;
+        line-height: 28px;
+        letter-spacing: 8px;
+        color: #eee;
+        top: -48px;
+        position: relative;
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+}
+.shape1,
+.shape2 {
+    stroke-dasharray: 1120;
+    stroke-width: 4px;
+    fill: transparent;
+    stroke: var(--accent);
+    border-bottom: 5px solid black;
+    // transition-timing-function: linear;
+    /*   transition: stroke-dashoffset 4s, stroke-dasharray 4s; */
+}
+.shape1 {
+    stroke-dashoffset: 1120;
+}
+.shape2 {
+    stroke-dashoffset: -1120;
+}
+.text {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 22px;
+    line-height: 32px;
+    letter-spacing: 8px;
+    color: #fff;
+    top: -48px;
+    position: relative;
+}
+.svg-wrapper .shape1,
+.svg-wrapper .shape2 {
+    animation: 8s animate ease-in-out infinite;
+}
+

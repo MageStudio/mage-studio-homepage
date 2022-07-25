@@ -11,8 +11,10 @@
 }
 
 @import './fonts.scss';
-@import 'style/M.css';
+// @import 'style/M.css';
 // @import 'style/ui.css';
+
+@import './ui/loadingscreen.scss';
 
 @import './ui/header/index.scss';
 @import './ui/footer/index.scss';
