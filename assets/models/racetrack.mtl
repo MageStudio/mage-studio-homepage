@@ -1,0 +1,38 @@
+# Created by Kenney (www.kenney.nl)
+
+newmtl grey(Clone)
+Kd 0.945 0.949 0.965
+
+newmtl grass(Clone)
+Kd 0.302 0.561 0.431
+
+newmtl road(Clone)
+Kd 0.267 0.267 0.267
+
+newmtl sand(Clone)
+Kd 0.783 0.719 0.587
+
+newmtl white(Clone)
+Kd 1 1 1
+
+newmtl red(Clone)
+Kd 0.91 0.333 0.325
+
+newmtl wall(Clone)
+Kd 1 0.949 0.871
+
+newmtl _defaultMat(Clone)
+Kd 1 1 1
+
+newmtl glass(Clone)
+Kd 0.298 0.376 0.467
+
+newmtl tankco(Clone)
+Kd 1 1 1
+
+newmtl bark(Clone)
+Kd 0.831 0.655 0.424
+
+newmtl net(Clone)
+Kd 1 1 1
+

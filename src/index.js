@@ -7,7 +7,14 @@ const { SHADOW_TYPES } = constants;
 // const ASSETS_MODELS_BASE_PATH = 'assets/models';
 // const ASSETS_TEXTURES_BASE_PATH = 'assets/textures';
 
-const assets = {};
+const assets = {
+    models: {
+        racetrack: '/assets/models/racetrack.glb',
+        car: '/assets/models/buggy.gltf',
+        jeep: '/assets/models/jeep.glb',
+        wheel: '/assets/models/wheel.gltf'
+    }
+};
 
 const config = {
     screen: {
@@ -29,7 +36,7 @@ const config = {
     },
 
     physics: {
-        enabled: false,
+        enabled: true,
         path: 'ammo.js',
         gravity: { x: 0, y: -9.8, z: 0 },
         fixedUpdate: 60

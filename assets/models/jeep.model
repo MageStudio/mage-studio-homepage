@@ -1,0 +1,34 @@
+# Made using Asset Forge (2.2.1)
+
+:materials
+
+[name:carTire;color:RGBA(0.267, 0.267, 0.267, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:grass;color:RGBA(0.302, 0.561, 0.431, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:glass;color:RGBA(0.510, 0.800, 0.867, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:grey;color:RGBA(0.945, 0.949, 0.965, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:metalGreen;color:RGBA(0.471, 0.878, 0.561, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0.75;]
+[name:dark;color:RGBA(0.184, 0.212, 0.251, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0;]
+[name:_defaultMat;color:RGBA(0.939, 0.953, 1.000, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0.25;]
+[name:lightRed;color:RGBA(0.906, 0.498, 0.404, 1.000);scale:(1.0, 1.0);shader:Unlit;]
+[name:metalLight;color:RGBA(0.698, 0.686, 0.867, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0.25;]
+[name:metal;color:RGBA(0.580, 0.569, 0.769, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.35;valueB:0.25;]
+[name:metalOrange;color:RGBA(1.000, 0.702, 0.000, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0.2;]
+[name:custom11;color:RGBA(0.000, 0.000, 0.000, 0.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0.15;]
+[name:custom12;color:RGBA(0.000, 0.000, 0.000, 0.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0.15;]
+[name:stoneLight;color:RGBA(0.710, 0.701, 0.840, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+[name:stoneDark;color:RGBA(0.403, 0.390, 0.594, 1.000);scale:(1.0, 1.0);shader:Default;valueA:0.5;valueB:0;]
+
+:models
+
+[name:;collection:Vehicles;type:bumper_detailed;position:(0.0000, 0.1000, -0.5000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:metalLight;]
+[name:;collection:Vehicles;type:bumper_detailed;position:(0.0000, 0.1000, 0.5000);rotation:(0.0000, 0.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:metalLight;]
+[name:;collection:Vehicles;type:body_backSolid;position:(0.0000, -0.6000, 0.5000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:dark+lightRed+metalGreen;]
+[name:;collection:Vehicles;type:body_topVan;position:(0.0000, 0.4000, -0.2000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:metalGreen+glass+dark;]
+[name:;collection:Vehicles;type:body_topBackVanWindow%;position:(0.0000, 0.4000, 0.5000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:metalGreen+dark+glass;]
+[name:;collection:Vehicles;type:body_frontSUV;position:(0.0000, -0.6000, -0.5000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:dark+metalGreen+glass;]
+[name:;collection:Vehicles;type:detail_lightRow%;position:(0.0000, 1.1000, -0.4000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:metalLight+metal+_defaultMat;]
+[name:;collection:Mech;type:tank_doubleDetailed;position:(0.2000, 0.4000, 1.0000);rotation:(0.0000, 180.0000, 0.0000);scale:(0.8000, 0.8000, 0.8000);group:;locked:False;hidden:False;materials:dark+metalOrange+_defaultMat;]
+[name:;collection:Vehicles;type:detail_rail%;position:(0.0000, 1.0000, 0.3000);rotation:(0.0000, 180.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:metalLight;]
+[name:;collection:Vehicles;type:detail_luggage;position:(0.0000, 1.0000, 0.4000);rotation:(0.0000, 90.0000, 0.0000);scale:(1.0000, 1.0000, 1.0000);group:;locked:False;hidden:False;materials:dark+metal;]
+[name:;collection:Mechanical;type:pipe_small;position:(0.2000, 0.0000, 0.9000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.1000, 0.1000, 0.1000);group:;locked:False;hidden:False;materials:_defaultMat+dark;]
+[name:;collection:Aircraft;type:panel_ventSmall;position:(-0.2000, 0.7000, 1.0000);rotation:(270.0000, 180.0000, 0.0000);scale:(0.4000, 0.4000, 0.4000);group:;locked:False;hidden:False;materials:_defaultMat+dark;]
