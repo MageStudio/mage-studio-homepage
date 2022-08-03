@@ -1,4 +1,5 @@
 import { Box } from 'mage-engine';
+import { Cylinder } from 'mage-engine';
 import { Lights } from 'mage-engine';
 import {
     Level,
@@ -37,49 +38,66 @@ const SATURATION_OPTIONS = {
 const { EFFECTS, MATERIALS, TEXTURES } = constants;
 
 const AMBIENTLIGHT_OPTIONS = {
-    color: PALETTES.BASE.WHITE,
-    intensity: 2
+    color: PALETTES.FRENCH_PALETTE.SPRAY,
+    intensity: .5
 };
 
 const HEMISPHERELIGHT_OPTIONS = {
     color: {
         sky: PALETTES.FRENCH_PALETTE.SQUASH_BLOSSOM,
-        ground: PALETTES.BASE.WHITE
+        ground: PALETTES.FRENCH_PALETTE.REEF_ENCOUNTER
     },
-    intensity: 2
+    intensity: .5
 };
 
 const SUNLIGHT_OPTIONS = {
-    color: PALETTES.BASE.WHITE,//PALETTES.FRENCH_PALETTE.MELON_MELODY,
-    intensity: .5,
+    color: PALETTES.BASE.WHITE,
+    intensity: 1,
     far: 500,
-    mapSize: 1024,
-};
-
-const CAR_MATERIAL_PROPERTIES = {
-    roughness: .5,
-    metalness: .8
-    // emissive: new THREE.Color(PALETTES.BASE.WHITE)
+    mapSize: 2048
 };
 
 const MATERIAL_PROPERTIES = {
-    roughness: .5,
-    metalness: 0.1
-    // emissive: new THREE.Color(PALETTES.BASE.WHITE)
+    roughness: .8,
+    metalness: 0
 };
+
+const CAR_OPTIONS = {
+    mass: 800,
+    friction: 1000,
+    maxEngineForce: 2500,
+    maxBreakingForce: 500,
+    steeringClamp: .7,
+    steeringIncrement: 0.04,
+    debug: true,
+    wheelsOptions: {
+        back: {
+            axisPosition: -.6,
+            radius: .35,
+            halfTrack: .7,
+            axisHeight: 0
+        },
+        front: {
+            axisPosition: .6,
+            radius: .35,
+            halfTrack: .7,
+            axisHeight: 0
+        }
+    },
+    suspensions: {
+        stiffness: 15.0,
+        damping: 2.3,
+        compression: 4.4,
+        restLength: .7
+    }
+}
 
 export default class Main extends Level {
 
     addLights() {
-        this.ambient = AmbientLight.create(AMBIENTLIGHT_OPTIONS);
-        this.hemi = HemisphereLight.create(HEMISPHERELIGHT_OPTIONS);
-        
-        const light = SunLight.create(SUNLIGHT_OPTIONS);
-        light.setPosition({ y: 100, x: 250, z: -100 });
-        light.addHelper();
-        window.light = light;
-
-        // this.cascadeShadowMaps = Lights.createCascadeShadowMaps({ cascades: 4 });
+        AmbientLight.create(AMBIENTLIGHT_OPTIONS);
+        HemisphereLight.create(HEMISPHERELIGHT_OPTIONS);
+        Lights.createCascadeShadowMaps({ cascades: 4 });
     }
 
     addSky() {
@@ -91,14 +109,10 @@ export default class Main extends Level {
         return Models.get('wheel', { name: `wheel_${index}` });
     }
 
-    createCar(name) {
-        return Models.get('car', { name });
-    }
-
     addCar() {
-        const car = this.createCar('first');
-        car.setPosition({ y: 2 });
+        const car = Models.get('jeep');
         car.setMaterialFromName(MATERIALS.STANDARD, MATERIAL_PROPERTIES);
+        car.setPosition({ y: 10 });
         
         const wheels = [
             this.createWheel(1),
@@ -109,62 +123,38 @@ export default class Main extends Level {
 
         // car.addEventListener(PHYSICS_EVENTS.VEHICLE.SPEED, this.handleSpeedChange);
         
-        car.addScript(Scripts.BUILTIN.BASECAR, {
-            wheels,
-            mass: 800,
-            friction: 800,
-            maxEngineForce: 2500,
-            maxBreakingForce: 500,
-            steeringClamp: 1,
-            steeringIncrement: 0.07,
-            debug: true,
-            wheelsOptions: {
-                back: {
-                    axisPosition: -1.25,
-                    radius: .35,
-                    halfTrack: 1,
-                    axisHeight: 0
-                },
-                front: {
-                    axisPosition: 1.2,
-                    radius: .35,
-                    halfTrack: 1,
-                    axisHeight: 0
-                }
-            },
-            suspensions: {
-                stiffness: 20.0,
-                damping: 2.3,
-                compression: 4.4,
-                restLength: 1
-            }
-        });
+        car.addScript(Scripts.BUILTIN.BASECAR, { wheels, ...CAR_OPTIONS });
 
-        Scene.getCamera().addScript(Scripts.BUILTIN.SMOOTH_CAR_FOLLOW, { target: car, distance: 3, height: 2, lerpFactor: 0.1 });
-        // const tracker = new Cube(1, 0xff0000);
-        // car.add(tracker);
+        Scene
+            .getCamera()
+            .addScript(Scripts.BUILTIN.SMOOTH_CAR_FOLLOW, { target: car, distance: 3, height: 3, lerpFactor: 0.08, lookAtHeight: 1 });
 
-        // tracker.setPosition({ z: -5, y: 2 });
-        // tracker.add(Scene.getCamera());
-        // // tracker.lookAt(car.getPosition().negate());
-        // setTimeout(() => Scene.getCamera().lookAt(car.getPosition()), 1000);
+        const frontAxis = new Box(1, .1, .1, PALETTES.BASE.BLACK);
+        const backAxis = new Box(1, .1, .1, PALETTES.BASE.BLACK);
+        
+        car.add([frontAxis, backAxis]);
 
-        // window.camera = Scene.getCamera();
-        // window.car = car;
-
-        // window.tracker = tracker;
+        backAxis.setPosition({ z: -.65, y: -.47 });
+        frontAxis.setPosition({ z: .6, y: -.52 });
     }
 
-    onCreate() {
-        this.addLights();
-        this.addSky();
+    createTrack() {
+        const track = Models.get('castletrack');
+        track.setMaterialFromName(MATERIALS.STANDARD, MATERIAL_PROPERTIES);
+        track.setScale({ x: 8, y: 8, z: 8 });
+        track.enablePhysics({ mass: 0 });
+    }
 
+    setupScene() {
         Scene.getCamera().setPosition({ x:0, y: 0, z: 0 });
-        // Scene.setClearColor(0x091a28);
-        // Scene.setBackground(0x091a28);
+        Scene.setClearColor(PALETTES.FRENCH_PALETTE.SQUASH_BLOSSOM);
+        Scene.setBackground(PALETTES.FRENCH_PALETTE.SQUASH_BLOSSOM);
         Scene.setRendererOutputEncoding(THREE.sRGBEncoding);
-        // PostProcessing.add(EFFECTS.HUE_SATURATION, SATURATION_OPTIONS);
+        PostProcessing.add(EFFECTS.HUE_SATURATION, SATURATION_OPTIONS);
+        PostProcessing.add(EFFECTS.DEPTH_OF_FIELD, DOF_OPTIONS);
+    }
 
+    setupOrbitControls() {
         Scene.getCamera().setPosition({ x: 2, y: 4, z: 0 });
         const orbit = Controls.setOrbitControl();
 
@@ -172,30 +162,16 @@ export default class Main extends Level {
         orbit.setMinPolarAngle(0);
         orbit.setMaxPolarAngle(Math.PI/2.5);
         orbit.setMaxDistance(15);
+    }
 
+    onCreate() {
+        this.addLights();
+        this.addSky();
 
-        // const track = Models.get('racetrack');
-        // const materials = track.setMaterialFromName(MATERIALS.STANDARD, MATERIAL_PROPERTIES);
-        // track.setScale({ x: 2, y: 2, z: 2 });
-        // track.enablePhysics({ mass: 0 });
+        this.setupScene();
+        // this.setupOrbitControls();
 
-        const ground = new Box(500, 1, 500, PALETTES.FRENCH_PALETTE.AURORA_GREEN);
-        ground.setPosition({ y: -4 });
-        ground.setMaterialFromName(MATERIALS.STANDARD, MATERIAL_PROPERTIES);
-        ground.enablePhysics({ mass: 0 });
-
-        // window.ground = ground;
-        // window.track = track;
-        // if (materials.length) {
-        //     materials.forEach(material => this.csm.setupMaterial(material));
-        // } else {
-        //     this.csm.setupMaterial(materials);
-        // }
-
-        window.jeep = Models.get('jeep');
-        jeep.setMaterialFromName(MATERIALS.STANDARD, CAR_MATERIAL_PROPERTIES);
-
-
-        // this.addCar();
+        this.createTrack();
+        this.addCar();
     }
 }
