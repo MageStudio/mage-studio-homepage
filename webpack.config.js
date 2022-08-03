@@ -74,6 +74,7 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 { from: './index.html', to: 'index.html', force: true },
+                { from: './ammo.js', to: 'ammo.js', force: true },
                 { from: 'assets', to: 'assets', noErrorOnMissing: true, force: true },
                 { from: 'css', to: 'css', noErrorOnMissing: true, force: true },
                 { from: 'fonts', to: 'fonts', noErrorOnMissing: true, force: true },
