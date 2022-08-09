@@ -1,6 +1,3 @@
-import { Box } from 'mage-engine';
-import { Cylinder } from 'mage-engine';
-import { Lights } from 'mage-engine';
 import {
     Level,
     Scene,
@@ -11,13 +8,14 @@ import {
     constants,
     THREE,
     Scripts,
-    SunLight,
     PALETTES,
     Sky,
-    Stats,
     PostProcessing,
-    Cube
+    Box,
+    store,
+    Lights
 } from 'mage-engine';
+import { speedometerVisible } from '../../ui/actions/track';
 
 export const WHITE = 0xffffff;
 export const SUNLIGHT = 0xffeaa7;
@@ -28,7 +26,7 @@ export const BACKGROUND = 0xdff9fb;//0xddf3f5;
 const DOF_OPTIONS = {
     focus: 1.0,
     aperture: .0003,//0.0002,//0.0001,
-    maxblur: 0.006//0.01
+    maxblur: 0.003//0.006
 };
 
 const SATURATION_OPTIONS = {
@@ -120,8 +118,6 @@ export default class Main extends Level {
             this.createWheel(3),
             this.createWheel(4),
         ];
-
-        // car.addEventListener(PHYSICS_EVENTS.VEHICLE.SPEED, this.handleSpeedChange);
         
         car.addScript(Scripts.BUILTIN.BASECAR, { wheels, ...CAR_OPTIONS });
 
@@ -136,6 +132,8 @@ export default class Main extends Level {
 
         backAxis.setPosition({ z: -.65, y: -.47 });
         frontAxis.setPosition({ z: .6, y: -.52 });
+
+        store.dispatch(speedometerVisible(car));
     }
 
     createTrack() {
