@@ -1,0 +1,63 @@
+header {
+    display: flex;
+    height: 42px;
+    padding: 16px;
+    flex-grow: 1;
+    font-family: "Nunito Sans", sans-serif;
+
+    border-bottom: 1px solid var(--borderColor);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-evenly;
+    align-items: center;
+    width: calc(100vw - 32px);
+    z-index: 2;
+
+    & .logo-container {
+        font-family: 'Leckerli One', italic;
+        color: var(--accent);
+        font-size: 2em;
+        line-height: 0px;
+        flex-grow: 16;
+        text-shadow: 2px 2px var(--faint-red-border);
+    }
+
+    & nav {
+        height: 42px;
+        line-height: 42px;
+        flex-grow: 1;
+    }
+
+    & .navigation-links { 
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-content: stretch;
+        justify-content: end;
+        align-items: center;
+
+        & li {
+            margin: 0px 16px;
+
+            & a {
+                color: white;
+                font-size: .7em;
+                font-weight: bold;
+                letter-spacing: 1px;
+                text-decoration: none;
+                color: rgba(255, 255, 255, .7);
+
+                &:focus,
+                &:hover {
+                    color:var(--accent);
+                    padding-bottom: 4px;
+                }
+            }
+        }
+    }
+}
