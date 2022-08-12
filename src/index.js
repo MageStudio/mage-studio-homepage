@@ -15,6 +15,10 @@ const assets = {
         jeep: '/assets/models/jeep.glb',
         wheel: '/assets/models/wheel.gltf',
         wheel_jeep: '/assets/models/wheel_jeep.glb'
+    },
+    audio: {
+        engine_start: '/assets/audio/engine_start.wav',
+        engine_running: '/assets/audio/engine.wav'
     }
 };
 

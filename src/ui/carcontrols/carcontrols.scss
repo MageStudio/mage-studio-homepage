@@ -1,0 +1,53 @@
+.carcontrols {
+    position: absolute;
+    width: 140PX;
+    left: calc(100vw - 172px);
+    top: calc(100vh - 300px);
+    display: flex;
+    z-index: 201;
+    opacity: .5;
+    font-family: "Work Sans";
+    text-align: center;
+    flex-direction: column;
+}
+
+.startengine {
+    width: 140PX;
+    border: 2PX solid white;
+    background-color: white;
+    color: black;
+    border-radius: 4PX;
+    height: 40px;
+    /* line-height: 40px; */
+    letter-spacing: 4px;
+    font-weight: bold;
+    text-align: center;
+    /* border: none; */
+
+    &:hover {
+        background: transparent;
+        color: white;
+    }
+}
+
+.speedometer {
+    height: 120px;
+    width: 120px;
+    border-radius: 8px;
+    font-size: 96px;
+    border: 2px solid white;
+    /* background: rgba(255, 255, 255, 0.1); */
+    color: white;
+    FONT-WEIGHT: 700;
+    line-height: 120px;
+    padding: 8px;
+    margin-bottom: 16px;
+}
+
+.speedometer::after {
+    content: 'km/h';
+    font-size: .7rem;
+    position: absolute;
+    top: 69px;
+    left: 102px;
+}

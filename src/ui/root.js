@@ -1,18 +1,20 @@
 import { Component } from 'inferno';
-import { connect } from 'mage-engine';
+import { connect, Scripts } from 'mage-engine';
 import Blobs from './blobs';
 import Footer from './footer';
 import Header from './header';
 import Hero from './hero';
 import LoadingScreen from './LoadingScreen';
-import Speedometer from './Speedometer';
+import CarControls from './carcontrols';
 
-const MainContent = ({ speedometerVisible, car }) => (
+import { playEngineSound } from '../levels/Main/sounds';
+
+const MainContent = (props) => (
     <>
         <Header />
-        <Blobs/>
+        {/* <Blobs/> */}
         <Hero />
-        { speedometerVisible && <Speedometer car={car} /> }
+        <CarControls { ...props } />
         <Footer />
     </>
 )
@@ -24,8 +26,24 @@ class Root extends Component {
 
         this.state = {
             fading: false,
-            loading: props.loadingScreenVisible
+            loading: props.loadingScreenVisible,
+            engineStarted: false
         };
+
+        this.handleEngineStartClick = this.handleEngineStartClick.bind(this);
+    }
+
+    handleEngineStartClick() {
+        const { car } = this.props;
+
+        if (!this.state.engineStarted) {
+            car.getScript('CarShake').shake();
+            car.getScript(Scripts.BUILTIN.BASECAR).startEngine();
+            playEngineSound(.4).then(audio => car.addScript('CarEngineAudio', { audio }));
+    
+            this.setState({ engineStarted: true });
+        }
+
     }
 
     componentDidUpdate(prevProps) {
@@ -43,7 +61,7 @@ class Root extends Component {
     }
 
     render() {
-        const { loading, fading } = this.state;
+        const { loading, fading, engineStarted } = this.state;
         const { speedometerVisible, car } = this.props;
 
         return  (
@@ -51,6 +69,8 @@ class Root extends Component {
                 { loading && <LoadingScreen fading={fading} /> }
                 <MainContent
                     car={car}
+                    engineStarted={engineStarted}
+                    onEngineStartClick={this.handleEngineStartClick}
                     speedometerVisible={speedometerVisible} />
             </>
         );

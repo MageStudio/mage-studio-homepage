@@ -48,6 +48,7 @@
         text-align: center;
     }
 }
+
 .shape1,
 .shape2 {
     stroke-dasharray: 1120;
@@ -58,12 +59,15 @@
     // transition-timing-function: linear;
     /*   transition: stroke-dashoffset 4s, stroke-dasharray 4s; */
 }
+
 .shape1 {
     stroke-dashoffset: 1120;
 }
+
 .shape2 {
     stroke-dashoffset: -1120;
 }
+
 .text {
     font-family: 'Nunito Sans', sans-serif;
     font-size: 22px;
@@ -73,6 +77,7 @@
     top: -48px;
     position: relative;
 }
+
 .svg-wrapper .shape1,
 .svg-wrapper .shape2 {
     animation: 8s animate ease-in-out infinite;
