@@ -12,7 +12,7 @@ import { playEngineSound } from '../levels/Main/sounds';
 const MainContent = (props) => (
     <>
         <Header />
-        <Blobs/>
+        {/* <Blobs/> */}
         <Hero />
         <CarControls { ...props } />
         <Footer />
@@ -37,6 +37,7 @@ class Root extends Component {
         const { car } = this.props;
 
         if (!this.state.engineStarted) {
+            car.getScript('CarShake').shake();
             car.getScript(Scripts.BUILTIN.BASECAR).startEngine();
             playEngineSound(.4).then(audio => car.addScript('CarEngineAudio', { audio }));
     

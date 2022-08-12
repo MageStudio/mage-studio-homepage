@@ -18,6 +18,7 @@ import {
 } from 'mage-engine';
 import { speedometerVisible } from '../../ui/actions/track';
 import CarEngineAudio from '../scripts/CarEngineAudio';
+import Shake from '../scripts/Shake';
 
 export const WHITE = 0xffffff;
 export const SUNLIGHT = 0xffeaa7;
@@ -122,6 +123,7 @@ export default class Main extends Level {
         ];
         
         car.addScript(Scripts.BUILTIN.BASECAR, { wheels, autostart: false, ...CAR_OPTIONS });
+        car.addScript('CarShake', { axis: 'z', speed: 50, angle: .01, repeat: 7 });
 
         Scene
             .getCamera()
@@ -168,6 +170,7 @@ export default class Main extends Level {
         Audio.setVolume(.5);
 
         Scripts.register('CarEngineAudio', CarEngineAudio);
+        Scripts.register('CarShake', Shake);
 
         this.addLights();
         this.addSky();
